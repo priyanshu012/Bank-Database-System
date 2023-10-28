@@ -1,0 +1,123 @@
+-- create database bank;
+USE bank;
+-- CREATE TABLE Branch 
+-- (id INT PRIMARY KEY, 
+-- name CHAR(50) UNIQUE, 
+-- address VARCHAR(50), 
+-- code INT);
+-- CREATE TABLE Card 
+-- (id INT PRIMARY KEY,
+-- card_number CHAR(50) UNIQUE,
+-- expiration_date DATE,is_blocked BOOL);
+-- CREATE TABLE Loan_type 
+-- (id INT PRIMARY KEY,
+-- type CHAR(10) UNIQUE,
+-- description CHAR(100),
+-- base_amount DECIMAL,
+-- base_interest_rate DECIMAL);
+-- CREATE TABLE Customer 
+-- (id INT PRIMARY KEY,
+--  branch_id INT,
+--  FOREIGN KEY(branch_id) REFERENCES Branch(id) ON UPDATE CASCADE ON DELETE SET NULL,
+--  first_name CHAR(50),
+--  last_name CHAR(50),
+--  date_of_birth DATE,
+--  gender CHAR(6)
+--  );
+-- CREATE TABLE Account (
+--     id INT PRIMARY KEY ,
+--     customer_id INT,
+--     FOREIGN KEY (customer_id) REFERENCES Customer(id) ON UPDATE CASCADE ON DELETE SET NULL,
+--     card_id INT,FOREIGN KEY (card_id) REFERENCES Card(id) ON UPDATE CASCADE ON DELETE SET NULL,
+--     balance CHAR(50));
+-- CREATE TABLE Loan (
+--     id INT PRIMARY KEY,
+--     account_id INT, FOREIGN KEY (account_id) REFERENCES Account(id)
+--     ON UPDATE CASCADE
+-- 	ON DELETE SET NULL,
+--     loan_type_id INT,FOREIGN KEY (loan_type_id) REFERENCES Loan_type(id)
+-- 	ON UPDATE CASCADE
+-- 	ON DELETE SET NULL,
+--     amount_paid DECIMAL(10, 3),
+--     start_date DATE,
+--     due_date DATE
+--  );    
+-- CREATE TABLE Transaction (
+--     id INT PRIMARY KEY,
+--     account_id INT, FOREIGN KEY (account_id) REFERENCES Account(id)
+--     ON UPDATE CASCADE
+-- 	ON DELETE SET NULL,
+--     description CHAR(100),
+--     amount DECIMAL(10, 3),
+--     date DATE
+-- );    
+-- CREATE USER 'mangal01'@'%'IDENTIFIED BY 'password';
+-- CREATE USER 'constant02'@'%' IDENTIFIED BY 'password';
+-- CREATE USER 'agrawal03'@'%' IDENTIFIED BY 'password';
+-- GRANT ALL ON *.* TO'mangal01'@'%';
+-- GRANT ALL ON *.* TO 'constant02'@'%'  WITH GRANT OPTION;
+-- GRANT SELECT, UPDATE, DELETE ON *.* TO 'agrawal03'@'%';
+-- SELECT * FROM mysql.user;
+-- SHOW GRANTS for 'mangal01'@'%';
+-- CREATE VIEW User_role_information AS
+-- 	SELECT User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv 
+-- 		FROM mysql.user
+-- 		WHERE Select_priv = 'Y' OR Insert_priv = 'Y' OR Update_priv = 'Y' OR Delete_priv = 'Y' OR Create_priv = 'Y'; 
+-- INSERT INTO Branch (id, name, address,code) VALUES ('1', 'PNB', 'Dhoolkot,Dholpur','194200');
+-- INSERT INTO Branch (id, name, address,code) VALUES ('2', 'HDFC', 'Sanjay Palace,Agra','000121');
+-- INSERT INTO Branch (id, name, address,code) VALUES ('3', 'IOB', 'Sitapura,Jaipur', '0001926');
+-- INSERT INTO Branch (id, name, address,code) VALUES ('4', 'Axis Bank','Barakhamba,New Delhi','000007');
+-- INSERT INTO Branch (id, name, address,code) VALUES ('5', 'SBI','JIWAJI CHOWK, GWALIOR', '000377');
+
+-- INSERT INTO Card (id, card_number, expiration_date, is_blocked) VALUES ('1', '1234567890123456', '2023-01-30',TRUE);
+-- INSERT INTO Card (id, card_number, expiration_date, is_blocked) VALUES ('2', '1234567890123457', '2023-08-20',TRUE);
+-- INSERT INTO Card (id, card_number, expiration_date, is_blocked) VALUES ('3', '1234567890123458', '2023-03-21',TRUE);
+-- INSERT INTO Card (id, card_number, expiration_date, is_blocked) VALUES ('4', '1234567890123459', '2023-01-14',FALSE);
+-- INSERT INTO Card (id, card_number, expiration_date, is_blocked) VALUES ('5', '1234567890123450', '2023-06-9', FALSE);
+-- INSERT INTO Loan_type (id, type, description, base_amount, base_interest_rate) VALUES ('1', 'Bank loans', 'description1', 10000, 15);
+-- INSERT INTO Loan_type (id, type, description, base_amount, base_interest_rate) VALUES ('2', 'Car loans', 'description2', 5000, 20);
+-- INSERT INTO Loan_type (id, type, description, base_amount, base_interest_rate) VALUES ('3', 'Online ln', 'description3', 3000, 25);
+-- INSERT INTO Loan_type (id, type, description, base_amount, base_interest_rate) VALUES ('4', 'Pay ln', 'description4', 1000, 30);
+-- INSERT INTO Loan_type (id, type, description, base_amount, base_interest_rate) VALUES ('5', 'Busns ln', 'description5', 7000, 35);
+-- INSERT INTO Customer (id, branch_id, first_name, last_name, date_of_birth, gender) VALUES ('1', '1', 'Priyanshu', 'Mangal', '2000-09-01', 'male');
+-- INSERT INTO Customer (id, branch_id, first_name, last_name, date_of_birth, gender) VALUES ('2', '3', 'Somya', 'Agrawal', '2003-07-18', 'male');
+-- INSERT INTO Customer (id, branch_id, first_name, last_name, date_of_birth, gender) VALUES ('3', '1', 'Dishu', 'Sharma', '2002-08-27', 'male');
+-- INSERT INTO Customer (id, branch_id, first_name, last_name, date_of_birth, gender) VALUES ('4', '2', 'Dhwani', 'Mangal', '2005-09-13', 'female');
+-- INSERT INTO Customer (id, branch_id, first_name, last_name, date_of_birth, gender) VALUES ('5', '2', 'Bhavya', 'Agrawal', '2001-06-11', 'female');
+-- INSERT INTO Account (id, customer_id, card_id, balance) VALUES ('1', '1', '1', '1000');
+-- INSERT INTO Account (id, customer_id, card_id, balance) VALUES ('2', '2', '2', '100');
+-- INSERT INTO Account (id, customer_id, card_id, balance) VALUES ('3', '3', '3', '200');
+-- INSERT INTO Account (id, customer_id, card_id, balance) VALUES ('4', '5', '4', '50000');
+-- INSERT INTO Account (id, customer_id, card_id, balance) VALUES ('5', '5', '5', '1000000');
+-- INSERT INTO Loan (id, account_id, loan_type_id, amount_paid, start_date, due_date) VALUES ('1', '1', '3', '0', '2020-05-18', '2023-05-18');
+-- INSERT INTO Loan (id, account_id, loan_type_id, amount_paid, start_date, due_date) VALUES ('2', '5', '1', '0', '2019-08-12', '2021-05-25');
+-- INSERT INTO Loan (id, account_id, loan_type_id, amount_paid, start_date, due_date) VALUES ('3', '4', '2', '100', '2019-05-13', '2024-05-14');
+-- INSERT INTO Loan (id, account_id, loan_type_id, amount_paid, start_date, due_date) VALUES ('4', '2', '5', '1000', '2018-05-25', '2021-05-21');
+-- INSERT INTO Loan (id, account_id, loan_type_id, amount_paid, start_date, due_date) VALUES ('5', '1', '4', '5000', '2020-05-20', '2023-05-07');
+-- INSERT INTO Transaction (id, account_id, description, amount, date) VALUES ('1', '1', 'description 100', '1000.90', '2020-05-18');
+-- INSERT INTO Transaction (id, account_id, description, amount, date) VALUES ('2', '2', 'description 200', '500.80', '2019-12-07');
+-- INSERT INTO Transaction (id, account_id, description, amount, date) VALUES ('3', '5', 'description 300', '100.90', '2018-06-30');
+-- INSERT INTO Transaction (id, account_id, description, amount, date) VALUES ('4', '5', 'description 400', '5060.7', '2020-01-24');
+-- INSERT INTO Transaction (id, account_id, description, amount, date) VALUES ('5', '5', 'description 500', '500.67', '2018-01-24');
+-- delimiter //
+-- CREATE TRIGGER bal_limit_insert BEFORE INSERT ON Account FOR EACH ROW
+--     BEGIN
+-- 		DECLARE message varchar(50);
+-- 		IF NEW.balance < 100 THEN
+-- 			SET message= CONCAT('Insertion error: new balance too low: ', NEW.balance);
+-- 			SIGNAL SQLSTATE '46000'
+--             SET MESSAGE_TEXT = message;
+-- 		END IF;
+-- 	END;
+-- //
+-- CREATE TRIGGER bal_limit_update BEFORE UPDATE ON Account FOR EACH ROW
+--     BEGIN
+-- 		DECLARE message varchar(50);
+-- 		IF NEW.balance < 100 THEN
+-- 			SET message= CONCAT('Update error: new balance too low: ', NEW.balance);
+-- 			SIGNAL SQLSTATE '46000'
+--             SET MESSAGE_TEXT = message;
+-- 		END IF;
+-- 	END;
+-- //
+-- delimiter ;
